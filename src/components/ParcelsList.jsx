@@ -1,7 +1,11 @@
 import day from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat.js";
 import { useState } from "react";
+import { BiSolidDetail } from "react-icons/bi";
+import { MdDeleteForever } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { customFetch } from "../utils/index.js";
 day.extend(localizedFormat);
 
 const ParcelsList = () => {
@@ -22,6 +26,19 @@ const ParcelsList = () => {
       parcel.trackingNumber.toLowerCase().includes(searchKeyword.toLowerCase())
     );
     setFilteredParcels(newParcels);
+  };
+
+  const deleteParcel = async (_id) => {
+    try {
+      const response = await customFetch.delete(`/parcels/${_id}`);
+      toast.success("Parcel deleted successfully");
+    } catch (error) {
+      console.log(error);
+      const errorMessage = error?.response?.data?.error;
+      toast.error(errorMessage);
+      return null;
+    }
+    return navigate("/dashboard");
   };
 
   return (
@@ -46,6 +63,7 @@ const ParcelsList = () => {
               <th>Created at</th>
               <th>Arrived at</th>
               <th>Picked up at</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -64,12 +82,24 @@ const ParcelsList = () => {
               const pickupDate = pickedUp && day(pickedUp).format("llll");
 
               return (
-                <tr key={_id} onClick={() => handleClick(_id)}>
+                <tr key={_id}>
                   <td>{trackingNumber}</td>
                   <td>{status}</td>
                   <td>{createdDate}</td>
                   <td>{arrivedDate || "not available"}</td>
                   <td>{pickupDate || "not available"}</td>
+                  <td className="flex gap-x-4">
+                    <BiSolidDetail
+                      className="h-5 w-5"
+                      onClick={() => handleClick(_id)}
+                    />
+                    {status === "created" ? (
+                      <MdDeleteForever
+                        className="h-5 w-5"
+                        onClick={() => deleteParcel(_id)}
+                      />
+                    ) : null}
+                  </td>
                 </tr>
               );
             })}

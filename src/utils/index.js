@@ -6,3 +6,10 @@ export const customFetch = axios.create({
   // to allow cookies to be set in the browser
   withCredentials: true,
 });
+
+export const groupBy = function (xs, key) {
+  return xs.reduce(function (rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};

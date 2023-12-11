@@ -1,14 +1,18 @@
 import day from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat.js";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/index.js";
 import { statuses } from "./../data";
+import Loading from "./Loading.jsx";
 day.extend(localizedFormat);
 
 const AdminParcelsList = () => {
   const loaderData = useLoaderData();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
   if (!loaderData) return null;
   const { count, parcels } = loaderData;
   const [search, setSearch] = useState("");
@@ -26,11 +30,12 @@ const AdminParcelsList = () => {
   const updateParcel = async ({ id, value }) => {
     if (value === "arrived") {
       try {
+        setIsLoading(true);
         const response = await customFetch.patch(
           `/parcels/updateParcelArrived/${id}`
         );
         toast.success("Parcel arrival updated");
-        console.log(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
         const errorMessage = error?.response?.data?.error;
@@ -40,11 +45,13 @@ const AdminParcelsList = () => {
     }
     if (value === "pickup") {
       try {
+        setIsLoading(true);
+
         const response = await customFetch.patch(
           `/parcels/updateParcelPickup/${id}`
         );
         toast.success("Parcel picked up updated");
-        console.log(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
         const errorMessage = error?.response?.data?.error;
@@ -52,7 +59,16 @@ const AdminParcelsList = () => {
         return null;
       }
     }
+    return navigate("/adminDashboard");
   };
+
+  if (isLoading) {
+    return (
+      <div className="text-center">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div>

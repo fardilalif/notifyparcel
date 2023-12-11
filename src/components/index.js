@@ -1,6 +1,7 @@
 export { default as About } from "./About.jsx";
 export { default as AddParcelForm } from "./AddParcelForm.jsx";
 export { default as AdminParcelsList } from "./AdminParcelsList.jsx";
+export { default as BarChart } from "./BarChart.jsx";
 export { default as FormInput } from "./FormInput.jsx";
 export { default as Header } from "./Header.jsx";
 export { default as Hero } from "./Hero.jsx";

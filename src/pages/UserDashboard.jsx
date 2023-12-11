@@ -65,11 +65,11 @@ const UserDashboard = () => {
     );
   }
   return (
-    <section className="flex flex-col gap-y-8">
+    <div className="flex flex-col gap-y-6">
       <AddParcelForm />
       <ParcelsList />
       <PaginationContainer />
-    </section>
+    </div>
   );
 };
 export default UserDashboard;

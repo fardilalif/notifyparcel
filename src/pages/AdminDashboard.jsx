@@ -1,6 +1,6 @@
-import { redirect } from "react-router-dom";
+import { redirect, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AdminParcelsList, PaginationContainer } from "../components";
+import { AdminParcelsList, BarChart, PaginationContainer } from "../components";
 import { customFetch } from "../utils/index.js";
 
 export const loader =
@@ -31,6 +31,12 @@ export const loader =
 const AdminDashboard = () => {
   return (
     <div>
+      <div className="w-full h-[20rem] text-center mb-16">
+        <h2 className="b-4 capitalize text-2xl font-medium mb-4">
+          Parcels Status
+        </h2>
+        <BarChart />
+      </div>
       <AdminParcelsList />
       <PaginationContainer />
     </div>
