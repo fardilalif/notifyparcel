@@ -1,6 +1,11 @@
 import { redirect, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AdminParcelsList, BarChart, PaginationContainer } from "../components";
+import {
+  AddParcelForm,
+  AdminParcelsList,
+  BarChart,
+  PaginationContainer,
+} from "../components";
 import { customFetch } from "../utils/index.js";
 
 export const loader =
@@ -37,8 +42,10 @@ const AdminDashboard = () => {
         </h2>
         <BarChart />
       </div>
-      <AdminParcelsList />
-      <PaginationContainer />
+      <div className="mt-8">
+        <AdminParcelsList />
+        <PaginationContainer />
+      </div>
     </div>
   );
 };

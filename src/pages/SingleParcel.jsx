@@ -5,6 +5,8 @@ import { customFetch } from "../utils/index.js";
 export const loader = async ({ params }) => {
   const { id } = params;
 
+  if (!id) return null;
+
   try {
     const response = await customFetch.get(`/parcels/${id}`);
     return response.data;

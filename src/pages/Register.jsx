@@ -33,7 +33,7 @@ const Register = () => {
         <FormInput label="student number" type="text" name="studentNumber" />
         <FormInput label="password" type="password" name="password" />
         <div className="mt-4">
-          <SubmitBtn text="register" />
+          <SubmitBtn text="register" btnBlock="btn-block" />
         </div>
         <p className="text-center">
           Already a member?{" "}

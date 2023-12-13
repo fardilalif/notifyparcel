@@ -1,10 +1,13 @@
+export { default as AddParcel } from "./AddParcel.jsx";
 export { default as AdminDashboard } from "./AdminDashboard.jsx";
 export { default as Error } from "./Error.jsx";
 export { default as HomeLayout } from "./HomeLayout.jsx";
 export { default as Landing } from "./Landing.jsx";
 export { default as Login } from "./Login.jsx";
+export { default as ParcelReport } from "./ParcelReport.jsx";
 export { default as Register } from "./Register.jsx";
 export { default as SingleParcel } from "./SingleParcel.jsx";
 export { default as Tracking } from "./Tracking.jsx";
+export { default as UpdateParcel } from "./UpdateParcel.jsx";
 export { default as UserDashboard } from "./UserDashboard.jsx";
 export { default as VerifyAccount } from "./VerifyAccount.jsx";

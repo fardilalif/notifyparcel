@@ -46,7 +46,7 @@ const Login = () => {
         <FormInput label="email" type="email" name="email" />
         <FormInput label="password" type="password" name="password" />
         <div className="mt-4">
-          <SubmitBtn text="login" />
+          <SubmitBtn text="login" btnBlock="btn-block" />
         </div>
         <p className="text-center">
           Not a member yet?{" "}

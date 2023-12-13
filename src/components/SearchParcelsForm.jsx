@@ -1,21 +1,19 @@
+import { useState } from "react";
 import { Form } from "react-router-dom";
-import FormInput from "./FormInput.jsx";
+import DatePickerForm from "./DatePickerForm";
 import SubmitBtn from "./SubmitBtn.jsx";
 
-const SearchParcelForm = () => {
+const SearchParcelsForm = () => {
   return (
     <div className="bg-base-200 rounded-lg px-8 py-4 w-full max-w-xl mx-auto grid gap-4">
-      <h1 className="text-xl font-medium tracking-wide">Find your parcel</h1>
+      <h1 className="text-xl font-medium tracking-wide">
+        Display a list of parcels based on date
+      </h1>
       <Form className="grid gap-4">
-        <FormInput
-          label="tracking number"
-          name="trackingNumber"
-          type="search"
-          size="input-sm"
-        />
+        <DatePickerForm name="date" />
         <SubmitBtn text="SEARCH PARCEl" size="btn-sm" btnBlock="btn-block" />
       </Form>
     </div>
   );
 };
-export default SearchParcelForm;
+export default SearchParcelsForm;

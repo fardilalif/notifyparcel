@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import {
   Bar,
@@ -10,27 +9,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { customFetch, groupBy } from "../utils/index.js";
+import { groupBy } from "../utils/index.js";
 
 const Chart = () => {
   const loaderData = useLoaderData();
-  const [parcels, setParcels] = useState([]);
-
-  useEffect(() => {
-    const getParcels = async () => {
-      try {
-        const response = await customFetch.get("/parcels");
-        setParcels(response.data.parcels);
-      } catch (error) {
-        console.log(error);
-        const errorMessage = error?.response?.data?.error;
-        toast.error(errorMessage);
-        return null;
-      }
-    };
-
-    getParcels();
-  }, [loaderData]);
+  if (!loaderData) return null;
+  const { parcels } = loaderData;
 
   const groupedData = groupBy(parcels, "status");
   const refinedData = [

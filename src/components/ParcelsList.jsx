@@ -9,9 +9,9 @@ import { customFetch } from "../utils/index.js";
 day.extend(localizedFormat);
 
 const ParcelsList = () => {
-  const { parcels, count } = useLoaderData();
+  const { count, parcels, parcelsPage } = useLoaderData();
   const [search, setSearch] = useState("");
-  const [filteredParcels, setFilteredParcels] = useState(parcels || []);
+  const [filteredParcels, setFilteredParcels] = useState(parcelsPage || []);
 
   const navigate = useNavigate();
 
@@ -22,6 +22,10 @@ const ParcelsList = () => {
   const handleSearch = (e) => {
     const searchKeyword = e.target.value;
     setSearch(searchKeyword);
+    if (searchKeyword === "") {
+      setFilteredParcels(parcelsPage);
+      return;
+    }
     const newParcels = parcels.filter((parcel) =>
       parcel.trackingNumber.toLowerCase().includes(searchKeyword.toLowerCase())
     );

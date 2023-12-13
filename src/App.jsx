@@ -1,28 +1,36 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
+  AddParcel,
   AdminDashboard,
   Error,
   HomeLayout,
   Landing,
   Login,
+  ParcelReport,
   Register,
   SingleParcel,
   Tracking,
+  UpdateParcel,
   UserDashboard,
   VerifyAccount,
 } from "./pages";
 
 // action
+import { action as addParcelActionAdmin } from "./pages/AddParcel.jsx";
 import { action as loginAction } from "./pages/Login.jsx";
 import { action as registerAction } from "./pages/Register.jsx";
+import { action as updateParcelAction } from "./pages/UpdateParcel.jsx";
 import { action as addParcelAction } from "./pages/UserDashboard.jsx";
 import { action as verifyAccountAction } from "./pages/VerifyAccount.jsx";
+
 // loader
 import { loader as adminDashboardLoader } from "./pages/AdminDashboard.jsx";
 import { loader as loginLoader } from "./pages/Login.jsx";
+import { loader as searchParcelsLoader } from "./pages/ParcelReport.jsx";
 import { loader as singleParcelLoader } from "./pages/SingleParcel.jsx";
 import { loader as trackingLoader } from "./pages/Tracking.jsx";
 import { loader as userDashboardLoader } from "./pages/UserDashboard.jsx";
+
 //store
 import { store } from "./store";
 
@@ -56,6 +64,21 @@ const router = createBrowserRouter([
         path: "tracking",
         element: <Tracking />,
         loader: trackingLoader,
+      },
+      {
+        path: "updateParcel/:id",
+        element: <UpdateParcel />,
+        action: updateParcelAction,
+      },
+      {
+        path: "addParcel",
+        element: <AddParcel />,
+        action: addParcelActionAdmin,
+      },
+      {
+        path: "parcelList",
+        element: <ParcelReport />,
+        loader: searchParcelsLoader,
       },
     ],
   },

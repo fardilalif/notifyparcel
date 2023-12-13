@@ -10,16 +10,31 @@ day.extend(localizedFormat);
 
 const ParcelInfo = () => {
   const loaderData = useLoaderData();
-  if (!loaderData) return null;
+  if (!loaderData) return;
   const {
-    parcel: { trackingNumber, status, createdAt, arrivedAt, pickedUp },
+    parcel: {
+      trackingNumber,
+      parcelCode,
+      color,
+      size,
+      createdAt,
+      arrivedAt,
+      pickedUp,
+    },
   } = loaderData;
 
   return (
     <section className="flex flex-col gap-y-8 justify-center">
-      <h2 className="text-2xl font-medium tracking-wide text-center">
-        Your tracking number : {trackingNumber}
-      </h2>
+      <div className="card w-96 mx-auto px-4 py-8">
+        <h3 className="text-2xl font-medium tracking-wide">
+          Tracking number: {trackingNumber}
+        </h3>
+        <p className="text-lg text-neutral-content">
+          Parcel code: {parcelCode || "N/A"}
+        </p>
+        <p className="text-lg text-neutral-content">Color: {color || "N/A"}</p>
+        <p className="text-lg text-neutral-content">Size: {size || "N/A"}</p>
+      </div>
       <ul className="timeline timeline-vertical">
         <li>
           <div className="timeline-middle text-2xl rounded-xl bg-base-300 w-8 h-8 grid place-items-center ">

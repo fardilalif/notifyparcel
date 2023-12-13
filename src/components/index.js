@@ -1,5 +1,6 @@
 export { default as About } from "./About.jsx";
 export { default as AddParcelForm } from "./AddParcelForm.jsx";
+export { default as AddParcelFormAdmin } from "./AddParcelFormAdmin.jsx";
 export { default as AdminParcelsList } from "./AdminParcelsList.jsx";
 export { default as BarChart } from "./BarChart.jsx";
 export { default as FormInput } from "./FormInput.jsx";
@@ -10,7 +11,10 @@ export { default as Navbar } from "./Navbar.jsx";
 export { default as PaginationContainer } from "./PaginationContainer.jsx";
 export { default as ParcelInfo } from "./ParcelInfo.jsx";
 export { default as ParcelsList } from "./ParcelsList.jsx";
+export { default as ParcelsReportList } from "./ParcelsReportList.jsx";
 export { default as SearchParcelForm } from "./SearchParcelForm.jsx";
+export { default as SearchParcelsForm } from "./SearchParcelsForm.jsx";
 export { default as SectionTitle } from "./SectionTitle.jsx";
 export { default as Services } from "./Services.jsx";
 export { default as SubmitBtn } from "./SubmitBtn.jsx";
+export { default as UpdateParcelForm } from "./UpdateParcelForm.jsx";

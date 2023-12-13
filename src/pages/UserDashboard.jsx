@@ -66,7 +66,10 @@ const UserDashboard = () => {
   }
   return (
     <div className="flex flex-col gap-y-6">
-      <AddParcelForm />
+      <AddParcelForm
+        text="Receive updates on the status of your parcel by entering your tracking
+        number."
+      />
       <ParcelsList />
       <PaginationContainer />
     </div>

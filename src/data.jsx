@@ -34,3 +34,6 @@ export const services = [
 ];
 
 export const statuses = ["created", "arrived", "pickup"];
+
+export const colors = ["choose color", "green", "black", "orange"];
+export const sizes = ["choose size", "small", "medium", "large"];

@@ -29,7 +29,7 @@ const VerifyAccount = () => {
         className="card w-96 bg-base-100 shadow-lg p-8 flex flex-col gap-y-4"
       >
         <h4 className="text-center text-3xl font-bold">Verify your account</h4>
-        <SubmitBtn text="VERIFY ACCOUNT" />
+        <SubmitBtn text="VERIFY ACCOUNT" btnBlock="btn-block" />
       </Form>
     </section>
   );
