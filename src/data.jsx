@@ -6,7 +6,8 @@ export const links = [
   { id: 1, url: "/", text: "home" },
   { id: 2, url: "adminDashboard", text: "dashboard" },
   { id: 3, url: "dashboard", text: "dashboard" },
-  { id: 4, url: "tracking", text: "tracking" },
+  { id: 4, url: "parcelList", text: "report" },
+  { id: 5, url: "tracking", text: "tracking" },
 ];
 
 export const services = [
@@ -32,8 +33,6 @@ export const services = [
     icon: <BiCustomize className="h-14 w-14 text-secondary mx-auto" />,
   },
 ];
-
-export const statuses = ["created", "arrived", "pickup"];
 
 export const colors = ["choose color", "green", "black", "orange"];
 export const sizes = ["choose size", "small", "medium", "large"];

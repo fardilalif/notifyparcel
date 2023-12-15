@@ -6,14 +6,18 @@ import { MdDeleteForever } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils/index.js";
+import Modal from "./Modal.jsx";
 day.extend(localizedFormat);
 
 const ParcelsList = () => {
   const { count, parcels, parcelsPage } = useLoaderData();
   const [search, setSearch] = useState("");
   const [filteredParcels, setFilteredParcels] = useState(parcelsPage || []);
-
   const navigate = useNavigate();
+
+  const handleToggle = () => {
+    document.getElementById("delete-parcel-modal").showModal();
+  };
 
   const handleClick = (_id) => {
     return navigate(`/parcels/${_id}`);
@@ -48,7 +52,7 @@ const ParcelsList = () => {
   return (
     <div>
       <h4 className="mb-4 capitalize text-2xl font-medium">
-        total parcels: {count}
+        total parcel{count === 1 ? "" : "s"}: {count}
       </h4>
       <input
         type="text"
@@ -100,9 +104,26 @@ const ParcelsList = () => {
                     {status === "created" ? (
                       <MdDeleteForever
                         className="h-5 w-5"
-                        onClick={() => deleteParcel(_id)}
+                        onClick={() => handleToggle()}
                       />
                     ) : null}
+                    <Modal id="delete-parcel-modal">
+                      <h3 className="font-bold text-lg">Delete Confirmation</h3>
+                      <p className="py-4">
+                        Press confirm button to delete this parcel
+                      </p>
+                      <div className="modal-action">
+                        <form method="dialog">
+                          <button className="btn btn-neutral">Close</button>
+                        </form>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => deleteParcel(_id)}
+                        >
+                          Confirm
+                        </button>
+                      </div>
+                    </Modal>
                   </td>
                 </tr>
               );

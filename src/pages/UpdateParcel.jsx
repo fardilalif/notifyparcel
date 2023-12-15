@@ -1,4 +1,4 @@
-import { redirect, useLocation, useParams } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SectionTitle, UpdateParcelForm } from "../components";
 import { customFetch } from "../utils/index.js";

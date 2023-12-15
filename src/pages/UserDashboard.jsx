@@ -52,18 +52,6 @@ export const action = async ({ request }) => {
 };
 
 const UserDashboard = () => {
-  const { count } = useLoaderData();
-
-  if (count === 0) {
-    return (
-      <>
-        <AddParcelForm />
-        <div className="mt-4">
-          <SectionTitle text="You have no parcel yet" />
-        </div>
-      </>
-    );
-  }
   return (
     <div className="flex flex-col gap-y-6">
       <AddParcelForm

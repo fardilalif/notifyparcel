@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
-import { MdDone } from "react-icons/md";
+import { MdDeleteForever, MdDone } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Form, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch, formatCurrency, formatDate } from "../utils";
+import Modal from "./Modal.jsx";
 
 const AdminParcelsList = () => {
   const loaderData = useLoaderData();
@@ -47,6 +48,23 @@ const AdminParcelsList = () => {
     return navigate("/adminDashboard");
   };
 
+  const deleteParcel = async (id) => {
+    try {
+      const response = await customFetch.delete(`/parcels/${id}`);
+      toast.success("Parcel deleted successfully");
+    } catch (error) {
+      console.log(error);
+      const errorMessage = error?.response?.data?.error;
+      toast.error(errorMessage);
+      return null;
+    }
+    return navigate("/adminDashboard");
+  };
+
+  const handleToggle = () => {
+    document.getElementById("delete-parcel-modal-1").showModal();
+  };
+
   if (isLoading) {
     return (
       <div className="text-center">
@@ -58,7 +76,7 @@ const AdminParcelsList = () => {
   return (
     <div>
       <h4 className="mb-4 capitalize text-2xl font-medium">
-        total parcels: {count}
+        total parcel{count === 1 ? "" : "s"}: {count}
       </h4>
 
       <div className="flex flex-wrap justify-between items-center mb-4">
@@ -70,7 +88,7 @@ const AdminParcelsList = () => {
           onChange={handleSearch}
         />
         <Link to="/addParcel" className="btn btn-primary btn-sm">
-          ADD +{" "}
+          ADD +
         </Link>
       </div>
 
@@ -78,7 +96,6 @@ const AdminParcelsList = () => {
         <table className="table table-zebra">
           <thead>
             <tr>
-              <th></th>
               <th></th>
               <th>Tracking number</th>
               <th>Parcel code</th>
@@ -119,22 +136,43 @@ const AdminParcelsList = () => {
               return (
                 <tr key={_id}>
                   <td>
-                    <button
-                      className="btn btn-ghost btn-xs"
-                      disabled={pickedUp ? 1 : 0}
-                      onClick={() => updatePickup(_id)}
-                    >
-                      {pickedUp ? (
-                        <MdDone className="h-5 w-5" />
-                      ) : (
-                        <TbTruckDelivery className="h-5 w-5" />
-                      )}
-                    </button>
-                  </td>
-                  <td>
-                    <Link to={`/updateParcel/${_id}`} state={{ parcel }}>
-                      <CiEdit className="w-5 h-5" />
-                    </Link>
+                    <div className="flex gap-x-2">
+                      <Link to={`/updateParcel/${_id}`} state={{ parcel }}>
+                        <CiEdit className="w-5 h-5" />
+                      </Link>
+                      <button
+                        className="btn btn-ghost btn-xs"
+                        disabled={pickedUp ? 1 : 0}
+                        onClick={() => updatePickup(_id)}
+                      >
+                        {pickedUp ? (
+                          <MdDone className="h-5 w-5" />
+                        ) : (
+                          <TbTruckDelivery className="h-5 w-5" />
+                        )}
+                      </button>
+                      <MdDeleteForever
+                        className="h-5 w-5"
+                        onClick={() => handleToggle()}
+                      />
+                    </div>
+                    <Modal id="delete-parcel-modal-1">
+                      <h3 className="font-bold text-lg">Delete Confirmation</h3>
+                      <p className="py-4">
+                        Press confirm button to delete this parcel
+                      </p>
+                      <div className="modal-action">
+                        <form method="dialog">
+                          <button className="btn btn-neutral">Close</button>
+                        </form>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => deleteParcel(_id)}
+                        >
+                          Confirm
+                        </button>
+                      </div>
+                    </Modal>
                   </td>
                   <td>{trackingNumber}</td>
                   <td>{parcelCode || "N /A"}</td>

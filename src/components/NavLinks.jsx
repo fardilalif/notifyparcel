@@ -16,6 +16,7 @@ const NavLinks = () => {
           return null;
 
         if (url === "adminDashboard" && user?.role !== "admin") return null;
+        if (url === "parcelList" && user?.role !== "admin") return null;
 
         return (
           <li key={id}>

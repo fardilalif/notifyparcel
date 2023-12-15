@@ -7,6 +7,7 @@ export { default as FormInput } from "./FormInput.jsx";
 export { default as Header } from "./Header.jsx";
 export { default as Hero } from "./Hero.jsx";
 export { default as Loading } from "./Loading.jsx";
+export { default as Modal } from "./Modal.jsx";
 export { default as Navbar } from "./Navbar.jsx";
 export { default as PaginationContainer } from "./PaginationContainer.jsx";
 export { default as ParcelInfo } from "./ParcelInfo.jsx";
