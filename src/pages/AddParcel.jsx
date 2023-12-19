@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AddParcelFormAdmin, SectionTitle } from "../components";
 import { customFetch } from "../utils/index.js";
@@ -21,7 +21,18 @@ export const action = async ({ request }) => {
 
 const AddParcel = () => {
   return (
-    <div className="grid place-items-center gap-y-4">
+    <div className="flex flex-col gap-y-4 justify-center items-center">
+      {/* BREADCRUMBS */}
+      <div className="text-sm self-start breadcrumbs">
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/adminDashboard">Dashboard</Link>
+          </li>
+        </ul>
+      </div>
       <SectionTitle text="Create parcel" />
       <AddParcelFormAdmin />
     </div>

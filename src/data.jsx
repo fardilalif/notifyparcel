@@ -6,7 +6,7 @@ export const links = [
   { id: 1, url: "/", text: "home" },
   { id: 2, url: "adminDashboard", text: "dashboard" },
   { id: 3, url: "dashboard", text: "dashboard" },
-  { id: 4, url: "parcelList", text: "report" },
+  { id: 4, url: "report", text: "report" },
   { id: 5, url: "tracking", text: "tracking" },
 ];
 
@@ -34,5 +34,37 @@ export const services = [
   },
 ];
 
-export const colors = ["choose color", "green", "black", "orange"];
-export const sizes = ["choose size", "small", "medium", "large"];
+export const colors = [
+  "choose color",
+  "putih",
+  "hitam",
+  "kelabu",
+  "kuning",
+  "merah",
+  "hijau",
+  "biru",
+  "pink",
+  "peach",
+  "oren",
+  "coklat",
+  "purple",
+  "silver",
+  "gold",
+  "pattern wrap",
+  "bubble wrap",
+  "rose gold/bronze",
+];
+export const sizes = [
+  "choose size",
+  "small",
+  "medium",
+  "large",
+  "kotak atas",
+  "kotak besar (luar)",
+  "surat/dokumen",
+  "panjang",
+  "besar (luar)",
+  "bulat",
+];
+
+export const prices = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0];

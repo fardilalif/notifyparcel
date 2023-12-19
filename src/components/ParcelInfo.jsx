@@ -6,6 +6,7 @@ import {
   MdOutlineDownloadDone,
 } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
+import { formatCurrency } from "../utils/index.js";
 day.extend(localizedFormat);
 
 const ParcelInfo = () => {
@@ -17,11 +18,14 @@ const ParcelInfo = () => {
       parcelCode,
       color,
       size,
+      serviceCharge,
       createdAt,
       arrivedAt,
       pickedUp,
     },
   } = loaderData;
+
+  const formattedPrice = formatCurrency(serviceCharge);
 
   return (
     <section className="flex flex-col gap-y-8 justify-center">
@@ -31,6 +35,9 @@ const ParcelInfo = () => {
         </h3>
         <p className="text-lg text-neutral-content">
           Parcel code: {parcelCode || "N/A"}
+        </p>
+        <p className="text-lg text-neutral-content">
+          Service charge: {formattedPrice || "N/A"}
         </p>
         <p className="text-lg text-neutral-content">Color: {color || "N/A"}</p>
         <p className="text-lg text-neutral-content">Size: {size || "N/A"}</p>

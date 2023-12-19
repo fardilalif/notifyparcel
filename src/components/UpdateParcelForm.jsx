@@ -1,5 +1,5 @@
 import { Form, useLocation } from "react-router-dom";
-import { colors, sizes } from "../data.jsx";
+import { colors, prices, sizes } from "../data.jsx";
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect";
 import SubmitBtn from "./SubmitBtn.jsx";
@@ -36,14 +36,11 @@ const UpdateParcelForm = () => {
         size="select-sm"
         defaultValue={size}
       />
-      <FormInput
+      <FormSelect
         label="service charge"
         name="serviceCharge"
-        type="number"
-        size="input-sm"
-        step="any"
-        min={0}
-        max={100}
+        list={prices}
+        size="select-sm"
         defaultValue={serviceCharge}
       />
       <SubmitBtn size="btn-sm" text="update" width="w-[20rem]" mx="mx-auto" />

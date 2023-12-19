@@ -17,6 +17,7 @@ export const loader =
       toast.warn("You must be logged in first");
       return redirect("/login");
     }
+    if (user?.role === "admin") return redirect("/adminDashboard");
 
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
@@ -55,7 +56,7 @@ const UserDashboard = () => {
   return (
     <div className="flex flex-col gap-y-6">
       <AddParcelForm
-        text="Receive updates on the status of your parcel by entering your tracking
+        text="Receive updates status of your parcel by entering your tracking
         number."
       />
       <ParcelsList />

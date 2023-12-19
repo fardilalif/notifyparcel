@@ -10,10 +10,10 @@ import Modal from "./Modal.jsx";
 const AdminParcelsList = () => {
   const loaderData = useLoaderData();
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
   if (!loaderData) return null;
   const { count, parcels, parcelsPage } = loaderData;
+  const navigate = useNavigate();
+  const [modalData, setModalData] = useState("");
   const [search, setSearch] = useState("");
   const [filteredParcels, setFilteredParcels] = useState(parcelsPage || []);
 
@@ -49,6 +49,7 @@ const AdminParcelsList = () => {
   };
 
   const deleteParcel = async (id) => {
+    console.log(id);
     try {
       const response = await customFetch.delete(`/parcels/${id}`);
       toast.success("Parcel deleted successfully");
@@ -61,7 +62,8 @@ const AdminParcelsList = () => {
     return navigate("/adminDashboard");
   };
 
-  const handleToggle = () => {
+  const handleToggle = (id) => {
+    setModalData(id);
     document.getElementById("delete-parcel-modal-1").showModal();
   };
 
@@ -87,7 +89,11 @@ const AdminParcelsList = () => {
           value={search}
           onChange={handleSearch}
         />
-        <Link to="/addParcel" className="btn btn-primary btn-sm">
+        <Link
+          to="/addParcel"
+          state={{ trackingNumber: search }}
+          className="btn btn-primary btn-sm"
+        >
           ADD +
         </Link>
       </div>
@@ -130,19 +136,26 @@ const AdminParcelsList = () => {
               const createdDate = formatDate(createdAt);
               const arrivedDate = formatDate(arrivedAt);
               const pickupDate = formatDate(pickedUp);
-              const formattedCurrency =
-                serviceCharge && formatCurrency(serviceCharge);
+              const formattedCurrency = formatCurrency(serviceCharge);
 
               return (
                 <tr key={_id}>
                   <td>
                     <div className="flex gap-x-2">
-                      <Link to={`/updateParcel/${_id}`} state={{ parcel }}>
-                        <CiEdit className="w-5 h-5" />
-                      </Link>
+                      <button className="btn btn-ghost btn-sm hover:cursor-pointer">
+                        <Link
+                          to={`/updateParcel/${_id}`}
+                          state={{ parcel }}
+                          className="hover:cursor-pointer"
+                        >
+                          <CiEdit className="w-5 h-5" />
+                        </Link>
+                      </button>
                       <button
-                        className="btn btn-ghost btn-xs"
-                        disabled={pickedUp ? 1 : 0}
+                        className="btn btn-ghost btn-xs hover:cursor-pointer"
+                        disabled={
+                          arrivedAt === undefined || pickedUp ? true : false
+                        }
                         onClick={() => updatePickup(_id)}
                       >
                         {pickedUp ? (
@@ -151,28 +164,13 @@ const AdminParcelsList = () => {
                           <TbTruckDelivery className="h-5 w-5" />
                         )}
                       </button>
-                      <MdDeleteForever
-                        className="h-5 w-5"
-                        onClick={() => handleToggle()}
-                      />
+                      <button className="btn btn-ghost btn-sm hover:cursor-pointer">
+                        <MdDeleteForever
+                          className="h-5 w-5"
+                          onClick={() => handleToggle(_id)}
+                        />
+                      </button>
                     </div>
-                    <Modal id="delete-parcel-modal-1">
-                      <h3 className="font-bold text-lg">Delete Confirmation</h3>
-                      <p className="py-4">
-                        Press confirm button to delete this parcel
-                      </p>
-                      <div className="modal-action">
-                        <form method="dialog">
-                          <button className="btn btn-neutral">Close</button>
-                        </form>
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => deleteParcel(_id)}
-                        >
-                          Confirm
-                        </button>
-                      </div>
-                    </Modal>
                   </td>
                   <td>{trackingNumber}</td>
                   <td>{parcelCode || "N /A"}</td>
@@ -190,6 +188,21 @@ const AdminParcelsList = () => {
             })}
           </tbody>
         </table>
+        <Modal id="delete-parcel-modal-1">
+          <h3 className="font-bold text-lg">Delete Confirmation</h3>
+          <p className="py-4">Press confirm button to delete this parcel</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-neutral">Close</button>
+            </form>
+            <button
+              className="btn btn-primary"
+              onClick={() => deleteParcel(modalData)}
+            >
+              Confirm
+            </button>
+          </div>
+        </Modal>
       </div>
     </div>
   );

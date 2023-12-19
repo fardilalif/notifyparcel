@@ -1,11 +1,6 @@
 import { redirect, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  AddParcelForm,
-  AdminParcelsList,
-  BarChart,
-  PaginationContainer,
-} from "../components";
+import { AdminParcelsList, BarChart, PaginationContainer } from "../components";
 import { customFetch } from "../utils/index.js";
 
 export const loader =

@@ -6,7 +6,8 @@ import {
   HomeLayout,
   Landing,
   Login,
-  ParcelReport,
+  ParcelReportArrival,
+  ParcelReportPickup,
   Register,
   SingleParcel,
   Tracking,
@@ -26,7 +27,8 @@ import { action as verifyAccountAction } from "./pages/VerifyAccount.jsx";
 // loader
 import { loader as adminDashboardLoader } from "./pages/AdminDashboard.jsx";
 import { loader as loginLoader } from "./pages/Login.jsx";
-import { loader as searchParcelsLoader } from "./pages/ParcelReport.jsx";
+import { loader as parcelArrivalLoader } from "./pages/ParcelReportArrival.jsx";
+import { loader as parcelPickupLoader } from "./pages/ParcelReportPickup.jsx";
 import { loader as singleParcelLoader } from "./pages/SingleParcel.jsx";
 import { loader as trackingLoader } from "./pages/Tracking.jsx";
 import { loader as userDashboardLoader } from "./pages/UserDashboard.jsx";
@@ -76,9 +78,14 @@ const router = createBrowserRouter([
         action: addParcelActionAdmin,
       },
       {
-        path: "parcelList",
-        element: <ParcelReport />,
-        loader: searchParcelsLoader,
+        path: "parcelListArrival",
+        element: <ParcelReportArrival />,
+        loader: parcelArrivalLoader,
+      },
+      {
+        path: "parcelListPickup",
+        element: <ParcelReportPickup />,
+        loader: parcelPickupLoader,
       },
     ],
   },

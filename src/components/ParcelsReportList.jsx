@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { formatCurrency, formatDate } from "../utils/index.js";
+import { formatCurrency } from "../utils/index.js";
 
 const ParcelsReportList = () => {
   const loaderData = useLoaderData();
@@ -20,11 +20,10 @@ const ParcelsReportList = () => {
               <th>No</th>
               <th>Tracking number</th>
               <th>Parcel code</th>
-              <th>Status</th>
               <th>Color</th>
               <th>Size</th>
-              <th>Arrived at</th>
               <th>Name</th>
+              <th>Service Charge</th>
             </tr>
           </thead>
           <tbody>
@@ -33,25 +32,22 @@ const ParcelsReportList = () => {
                 _id,
                 trackingNumber,
                 parcelCode,
-                status,
                 color,
                 size,
-                arrivedAt,
+                serviceCharge,
               } = parcel;
               const name = parcel?.owner?.name || "";
-
-              const arrivedDate = formatDate(arrivedAt);
+              const formattedPrice = formatCurrency(serviceCharge);
 
               return (
                 <tr key={_id}>
                   <td>{++count}</td>
                   <td>{trackingNumber}</td>
                   <td>{parcelCode || "N /A"}</td>
-                  <td>{status}</td>
                   <td>{color || "N /A"}</td>
                   <td>{size || "N /A"}</td>
-                  <td>{arrivedDate || "N/A"}</td>
                   <td>{name || "N/A"}</td>
+                  <td>{formattedPrice || "N/A"}</td>
                 </tr>
               );
             })}

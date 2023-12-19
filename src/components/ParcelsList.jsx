@@ -12,14 +12,16 @@ day.extend(localizedFormat);
 const ParcelsList = () => {
   const { count, parcels, parcelsPage } = useLoaderData();
   const [search, setSearch] = useState("");
+  const [modalData, setModalData] = useState("");
   const [filteredParcels, setFilteredParcels] = useState(parcelsPage || []);
   const navigate = useNavigate();
 
-  const handleToggle = () => {
+  const handleToggle = (id, trackingNumber) => {
+    setModalData(id);
     document.getElementById("delete-parcel-modal").showModal();
   };
 
-  const handleClick = (_id) => {
+  const handleDetailClick = (_id) => {
     return navigate(`/parcels/${_id}`);
   };
 
@@ -36,9 +38,9 @@ const ParcelsList = () => {
     setFilteredParcels(newParcels);
   };
 
-  const deleteParcel = async (_id) => {
+  const deleteParcel = async (id) => {
     try {
-      const response = await customFetch.delete(`/parcels/${_id}`);
+      const response = await customFetch.delete(`/parcels/${id}`);
       toast.success("Parcel deleted successfully");
     } catch (error) {
       console.log(error);
@@ -94,42 +96,42 @@ const ParcelsList = () => {
                   <td>{trackingNumber}</td>
                   <td>{status}</td>
                   <td>{createdDate}</td>
-                  <td>{arrivedDate || "not available"}</td>
-                  <td>{pickupDate || "not available"}</td>
-                  <td className="flex gap-x-4">
-                    <BiSolidDetail
-                      className="h-5 w-5"
-                      onClick={() => handleClick(_id)}
-                    />
-                    {status === "created" ? (
-                      <MdDeleteForever
+                  <td>{arrivedDate || "N/A"}</td>
+                  <td>{pickupDate || "N/A"}</td>
+                  <td>
+                    <div className="flex gap-x-4">
+                      <BiSolidDetail
                         className="h-5 w-5"
-                        onClick={() => handleToggle()}
+                        onClick={() => handleDetailClick(_id)}
                       />
-                    ) : null}
-                    <Modal id="delete-parcel-modal">
-                      <h3 className="font-bold text-lg">Delete Confirmation</h3>
-                      <p className="py-4">
-                        Press confirm button to delete this parcel
-                      </p>
-                      <div className="modal-action">
-                        <form method="dialog">
-                          <button className="btn btn-neutral">Close</button>
-                        </form>
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => deleteParcel(_id)}
-                        >
-                          Confirm
-                        </button>
-                      </div>
-                    </Modal>
+                      {status === "created" ? (
+                        <MdDeleteForever
+                          className="h-5 w-5"
+                          onClick={() => handleToggle(_id)}
+                        />
+                      ) : null}
+                    </div>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+        <Modal id="delete-parcel-modal">
+          <h3 className="font-bold text-lg">Delete Confirmation</h3>
+          <p className="py-4">Press confirm button to delete this parcel</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-neutral">Close</button>
+            </form>
+            <button
+              className="btn btn-primary"
+              onClick={() => deleteParcel(modalData)}
+            >
+              Confirm
+            </button>
+          </div>
+        </Modal>
       </div>
     </div>
   );

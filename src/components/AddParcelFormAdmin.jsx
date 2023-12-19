@@ -1,10 +1,13 @@
-import { Form } from "react-router-dom";
-import { colors, sizes } from "../data.jsx";
+import { Form, useLocation } from "react-router-dom";
+import { colors, prices, sizes } from "../data.jsx";
 import FormInput from "./FormInput.jsx";
 import FormSelect from "./FormSelect.jsx";
 import SubmitBtn from "./SubmitBtn.jsx";
 
 const AddParcelFormAdmin = () => {
+  const location = useLocation();
+  const trackingNumber = location.state?.trackingNumber;
+
   return (
     <Form
       method="POST"
@@ -16,6 +19,7 @@ const AddParcelFormAdmin = () => {
         type="text"
         size="input-sm"
         placeholder="eg: JNT128323"
+        defaultValue={trackingNumber}
       />
       <FormInput
         label="parcel code"
@@ -26,14 +30,11 @@ const AddParcelFormAdmin = () => {
       />
       <FormSelect label="color" name="color" list={colors} size="select-sm" />
       <FormSelect label="size" name="size" list={sizes} size="select-sm" />
-      <FormInput
+      <FormSelect
         label="service charge"
         name="serviceCharge"
-        type="number"
-        size="input-sm"
-        step="any"
-        min={0}
-        max={100}
+        list={prices}
+        size="select-sm"
       />
       <SubmitBtn size="btn-sm" text="update" width="w-[20rem]" mx="mx-auto" />
     </Form>
