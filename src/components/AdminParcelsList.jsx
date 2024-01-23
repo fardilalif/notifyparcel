@@ -62,9 +62,14 @@ const AdminParcelsList = () => {
     return navigate("/parcels");
   };
 
-  const handleToggle = (id) => {
+  const handleDelete = (id) => {
     setModalData(id);
     document.getElementById("delete-parcel-modal-1").showModal();
+  };
+
+  const handlePickup = (id) => {
+    setModalData(id);
+    document.getElementById("pickup-parcel-modal").showModal();
   };
 
   if (isLoading) {
@@ -156,7 +161,7 @@ const AdminParcelsList = () => {
                         disabled={
                           arrivedAt === undefined || pickedUp ? true : false
                         }
-                        onClick={() => updatePickup(_id)}
+                        onClick={() => handlePickup(_id)}
                       >
                         {pickedUp ? (
                           <MdDone className="h-5 w-5" />
@@ -167,7 +172,7 @@ const AdminParcelsList = () => {
                       <button className="btn btn-ghost btn-sm hover:cursor-pointer">
                         <MdDeleteForever
                           className="h-5 w-5"
-                          onClick={() => handleToggle(_id)}
+                          onClick={() => handleDelete(_id)}
                         />
                       </button>
                     </div>
@@ -193,11 +198,26 @@ const AdminParcelsList = () => {
           <p className="py-4">Press confirm button to delete this parcel</p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn btn-neutral">Close</button>
+              <button className="btn">Close</button>
             </form>
             <button
               className="btn btn-primary"
               onClick={() => deleteParcel(modalData)}
+            >
+              Confirm
+            </button>
+          </div>
+        </Modal>
+        <Modal id="pickup-parcel-modal">
+          <h3 className="font-bold text-lg">Pickup confirmation</h3>
+          <p className="py-4">Press confirm button to update pickup</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Close</button>
+            </form>
+            <button
+              className="btn btn-primary"
+              onClick={() => updatePickup(modalData)}
             >
               Confirm
             </button>

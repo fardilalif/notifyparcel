@@ -122,7 +122,7 @@ const ParcelsList = () => {
           <p className="py-4">Press confirm button to delete this parcel</p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn btn-neutral">Close</button>
+              <button className="btn">Close</button>
             </form>
             <button
               className="btn btn-primary"
