@@ -6,6 +6,7 @@ export { default as Landing } from "./Landing.jsx";
 export { default as Login } from "./Login.jsx";
 export { default as ParcelReportArrival } from "./ParcelReportArrival.jsx";
 export { default as ParcelReportPickup } from "./ParcelReportPickup.jsx";
+export { default as Parcels } from "./Parcels.jsx";
 export { default as Register } from "./Register.jsx";
 export { default as SingleParcel } from "./SingleParcel.jsx";
 export { default as Tracking } from "./Tracking.jsx";

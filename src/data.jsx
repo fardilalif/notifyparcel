@@ -5,9 +5,10 @@ import { IoIosNotifications } from "react-icons/io";
 export const links = [
   { id: 1, url: "/", text: "home" },
   { id: 2, url: "adminDashboard", text: "dashboard" },
-  { id: 3, url: "dashboard", text: "dashboard" },
-  { id: 4, url: "report", text: "report" },
-  { id: 5, url: "tracking", text: "tracking" },
+  { id: 3, url: "parcels", text: "parcels" },
+  { id: 4, url: "dashboard", text: "dashboard" },
+  { id: 5, url: "report", text: "report" },
+  { id: 6, url: "tracking", text: "tracking" },
 ];
 
 export const services = [

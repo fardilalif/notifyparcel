@@ -16,15 +16,16 @@ const NavLinks = () => {
           return null;
 
         if (url === "adminDashboard" && user?.role !== "admin") return null;
+        if (url === "parcels" && user?.role !== "admin") return null;
         if (url === "report" && user?.role !== "admin") return null;
         if (url === "report" && user?.role === "admin") {
           return (
             <li key="report" className="dropdown dropdown-end">
-              <div tabIndex={0} role="button">
+              <div tabIndex={1} role="button">
                 Report
               </div>
               <ul
-                tabIndex={0}
+                tabIndex={1}
                 className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <li>

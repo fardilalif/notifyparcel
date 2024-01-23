@@ -7,7 +7,7 @@ const SubmitBtn = ({ text, size, width, btnBlock, mx }) => {
   return (
     <button
       type="submit"
-      className={`btn btn-primary btn-block uppercase ${size} ${width} ${btnBlock} ${mx}`}
+      className={`btn btn-primary btn-block uppercase ${size} ${btnBlock}`}
       disabled={isSubmitting}
     >
       {isSubmitting ? (

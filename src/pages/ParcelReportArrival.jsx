@@ -24,17 +24,6 @@ export const loader = async ({ request }) => {
 const ParcelReportArrival = () => {
   return (
     <div className="flex flex-col gap-y-4">
-      {/* BREADCRUMBS */}
-      <div className="text-sm self-start breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/adminDashboard">Dashboard</Link>
-          </li>
-        </ul>
-      </div>
       <SearchParcelsForm
         text="Daily 
       parcels arrival"

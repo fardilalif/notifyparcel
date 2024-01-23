@@ -14,7 +14,7 @@ export const action = async ({ params, request }) => {
       data
     );
     toast.success("Parcel updated successfully");
-    return redirect("/adminDashboard");
+    return redirect("/parcels");
   } catch (error) {
     console.log(error);
     const errorMessage = error?.response?.data?.error;
@@ -26,17 +26,6 @@ export const action = async ({ params, request }) => {
 const UpdateParcel = () => {
   return (
     <div className="flex flex-col gap-y-4 justify-center items-center">
-      {/* BREADCRUMBS */}
-      <div className="text-sm self-start breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/adminDashboard">Dashboard</Link>
-          </li>
-        </ul>
-      </div>
       <SectionTitle text="Update parcel information" />
       <UpdateParcelForm />
     </div>

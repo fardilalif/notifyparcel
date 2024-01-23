@@ -1,11 +1,6 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  AddParcelForm,
-  PaginationContainer,
-  ParcelsList,
-  SectionTitle,
-} from "../components";
+import { AddParcelForm, PaginationContainer, ParcelsList } from "../components";
 import { customFetch } from "../utils/index.js";
 
 export const loader =

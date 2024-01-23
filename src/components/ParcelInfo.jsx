@@ -28,12 +28,12 @@ const ParcelInfo = () => {
   const formattedPrice = formatCurrency(serviceCharge);
 
   return (
-    <section className="flex flex-col gap-y-8 justify-center">
+    <section className="flex flex-col gap-y-8 items-center">
       <div className="card w-96 mx-auto px-4 py-8">
         <h3 className="text-2xl font-medium tracking-wide">
           Tracking number: {trackingNumber}
         </h3>
-        <p className="text-lg text-neutral-content">
+        <p className="text-2xl font-medium text-neutral-content">
           Parcel code: {parcelCode || "N/A"}
         </p>
         <p className="text-lg text-neutral-content">

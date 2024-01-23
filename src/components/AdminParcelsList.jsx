@@ -45,7 +45,7 @@ const AdminParcelsList = () => {
       toast.error(errorMessage);
       return null;
     }
-    return navigate("/adminDashboard");
+    return navigate("/parcels");
   };
 
   const deleteParcel = async (id) => {
@@ -59,7 +59,7 @@ const AdminParcelsList = () => {
       toast.error(errorMessage);
       return null;
     }
-    return navigate("/adminDashboard");
+    return navigate("/parcels");
   };
 
   const handleToggle = (id) => {
@@ -81,7 +81,7 @@ const AdminParcelsList = () => {
         total parcel{count === 1 ? "" : "s"}: {count}
       </h4>
 
-      <div className="flex flex-wrap justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 gap-x-2">
         <input
           type="text"
           className="input input-bordered w-full max-w-xs input-sm"

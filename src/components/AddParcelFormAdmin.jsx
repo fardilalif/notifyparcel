@@ -36,7 +36,7 @@ const AddParcelFormAdmin = () => {
         list={prices}
         size="select-sm"
       />
-      <SubmitBtn size="btn-sm" text="update" width="w-[20rem]" mx="mx-auto" />
+      <SubmitBtn size="btn-sm" text="update" />
     </Form>
   );
 };

@@ -8,6 +8,7 @@ import {
   Login,
   ParcelReportArrival,
   ParcelReportPickup,
+  Parcels,
   Register,
   SingleParcel,
   Tracking,
@@ -29,6 +30,7 @@ import { loader as adminDashboardLoader } from "./pages/AdminDashboard.jsx";
 import { loader as loginLoader } from "./pages/Login.jsx";
 import { loader as parcelArrivalLoader } from "./pages/ParcelReportArrival.jsx";
 import { loader as parcelPickupLoader } from "./pages/ParcelReportPickup.jsx";
+import { loader as parcelsLoader } from "./pages/Parcels.jsx";
 import { loader as singleParcelLoader } from "./pages/SingleParcel.jsx";
 import { loader as trackingLoader } from "./pages/Tracking.jsx";
 import { loader as userDashboardLoader } from "./pages/UserDashboard.jsx";
@@ -56,6 +58,11 @@ const router = createBrowserRouter([
         path: "adminDashboard",
         element: <AdminDashboard />,
         loader: adminDashboardLoader(store),
+      },
+      {
+        path: "parcels",
+        element: <Parcels />,
+        loader: parcelsLoader(store),
       },
       {
         path: "parcels/:id",
