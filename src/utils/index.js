@@ -3,7 +3,7 @@ import day from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat.js";
 day.extend(localizedFormat);
 
-const productionUrl = "http://localhost:5000/api/v1";
+const productionUrl = "https://api.notifyparcel.site/api/v1";
 export const customFetch = axios.create({
   baseURL: productionUrl,
   // to allow cookies to be set in the browser
