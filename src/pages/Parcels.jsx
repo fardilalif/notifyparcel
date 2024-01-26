@@ -34,7 +34,7 @@ const Parcels = () => {
   return (
     <div className="flex flex-col gap-y-4 items-center">
       <SectionTitle text="Parcels" />
-      <section>
+      <section className="w-full">
         <AdminParcelsList />
         <PaginationContainer />
       </section>
