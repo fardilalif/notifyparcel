@@ -146,7 +146,7 @@ const AdminParcelsList = () => {
               return (
                 <tr key={_id}>
                   <td>
-                    <div className="flex gap-x-2">
+                    <div className="flex items-center gap-x-2">
                       <button className="btn btn-ghost btn-sm hover:cursor-pointer">
                         <Link
                           to={`/updateParcel/${_id}`}
