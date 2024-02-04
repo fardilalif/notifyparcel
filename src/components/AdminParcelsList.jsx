@@ -2,7 +2,13 @@ import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever, MdDone } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
-import { Form, Link, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Link,
+  createSearchParams,
+  useLoaderData,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch, formatCurrency, formatDate } from "../utils";
 import Modal from "./Modal.jsx";
@@ -16,6 +22,8 @@ const AdminParcelsList = () => {
   const [modalData, setModalData] = useState("");
   const [search, setSearch] = useState("");
   const [filteredParcels, setFilteredParcels] = useState(parcelsPage || []);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get("page");
 
   const handleSearch = (e) => {
     const searchKeyword = e.target.value;
@@ -45,11 +53,13 @@ const AdminParcelsList = () => {
       toast.error(errorMessage);
       return null;
     }
-    return navigate("/parcels");
+    return navigate({
+      pathname: "/parcels",
+      search: createSearchParams({ page }).toString(),
+    });
   };
 
   const deleteParcel = async (id) => {
-    console.log(id);
     try {
       const response = await customFetch.delete(`/parcels/${id}`);
       toast.success("Parcel deleted successfully");
@@ -59,7 +69,10 @@ const AdminParcelsList = () => {
       toast.error(errorMessage);
       return null;
     }
-    return navigate("/parcels");
+    return navigate({
+      pathname: "/parcels",
+      search: createSearchParams({ page }).toString(),
+    });
   };
 
   const handleDelete = (id) => {
