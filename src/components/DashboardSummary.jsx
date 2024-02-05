@@ -19,7 +19,8 @@ const DashboardSummary = () => {
       dailyCreated++;
     }
     if (
-      parcel.status === "arrived" ||
+      (parcel.status === "arrived" &&
+        dayjs(parcel.arrivedAt).isSame(dayjs(), "day")) ||
       (parcel.status === "pickup" &&
         dayjs(parcel.arrivedAt).isSame(dayjs(), "day"))
     ) {
